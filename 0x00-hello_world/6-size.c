@@ -1,8 +1,11 @@
 #include <stdio.h>
+
 /**
  *  * main - main block
  *   * Return: 0
- *    */
+ *
+ */
+
 int main(void)
 {
 		printf("Size of a char: %i byte(s)\n", sizeof(char));
@@ -12,6 +15,7 @@ int main(void)
 						printf("Size of a float: %i byte(s)\n", sizeof(float));
 							return (0);
 }
+
 100)#!/bin/bash
 gcc -S -masm=intel $CFILE
 
@@ -24,6 +28,7 @@ gcc -S -masm=intel $CFILE
  *     * Return: Always 1.
  *      */
 int main(void)
+
 {
 		write(2,
 					      "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n",
