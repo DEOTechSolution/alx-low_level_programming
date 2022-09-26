@@ -1,20 +1,13 @@
 #include "main.h"
-#include <stdio.h>
-/**
- * print_diagsums - prints diagonal summaries
- * @a: array to use
- * @size: size of diagonal
- */
-void print_diagsums(int *a, int size)
-{
-	int i;
-	int diagO = 0;
-	int diagT = 0;
 
-	for (i = 0; i < size; i++)
-	{
-		diagO += a[(i * size) + i];
-		diagT += a[(size - 1) + ((size - 1) * i)];
-	}
-	printf("%d, %d\n", diagO, diagT);
+/**
+  * set_string - Sets the value of a pointer to char
+  * @s: the value to modify
+  * @to: the value to assign
+  *
+  * Return: Nothing.
+  */
+void set_string(char **s, char *to)
+{
+	*s = to;
 }
