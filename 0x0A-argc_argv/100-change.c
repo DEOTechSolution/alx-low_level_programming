@@ -1,51 +1,52 @@
-#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+
 /**
- * main - main function
- * @argc: argumentc
- * @argv: vector of arguments
- *Return: always 0
- */
-int main(int argc, char  *argv[])
+* main - entry point
+*
+* @argc: integer, length of @argv
+*
+* @argv: one-dimensional array of strings, arguments of this program
+*
+* Return: 0, success
+*/
+
+int main(int argc, char *argv[])
 {
-	int coins = 0;
+	int result, amount, cent;
 
-	if (argc == 2)
+	if (argc != 2)
 	{
-		if (strchr(argv[argc - 1], '-'))
-		{
-			printf("0\n");
-			return (1);
-		}
-		int money;
+		printf("Error\n");
+		return (1);
+	}
 
-		money = atoi(argv[argc - 1]);
+	result = 0;
+	amount  = atoi(argv[1]);
 
-		while (money > 0)
-		{
-			if (money % 25 == 0)
-			{
-				money -= 25;
-			} else if (money % 10 == 0)
-			{
-				money -= 10;
-			} else if (money % 5 == 0)
-			{
-				money -= 5;
-			} else if (money % 2 == 0)
-			{
-				money -= 2;
-			} else
-			{
-				money--;
-			}
-			coins++;
-		}
-		printf("%d\n", coins);
+	if (amount < 0)
+	{
+		printf("0\n");
 		return (0);
 	}
-	printf("Error\n");
-	return (1);
+
+	while (amount)
+	{
+		if (amount >= 25)
+			cent = 25;
+		else if (amount >= 10)
+			cent = 10;
+		else if (amount >= 5)
+			cent = 5;
+		else if (amount >= 2)
+			cent = 2;
+		else
+			cent = 1;
+
+		result += amount / cent;
+		amount %= cent;
+	}
+
+	printf("%d\n", result);
+	return (0);
 }
