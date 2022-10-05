@@ -1,46 +1,41 @@
 #include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
 /**
- * argstostr - gives array of args
- * @ac: argument count
- * @av: array of arguments
- * Return: char value
+ * argstostr - concatenates alr the arguments of your program.
+ * @ac: number of arguments.
+ * @av: array of arguments.
+ * Return: NULL if ac == 0 or av == NULL, pointer
+ * to a new string, or NULL if it fails.
  */
 char *argstostr(int ac, char **av)
 {
-	int size;
-	char *s;
-	int i;
-	int j;
-	int k;
+	char *newstr;
+	int arg, byte, newind = 0, len = 0;
 
-	if (ac == 0 || av == NULL)
+	if (ac <= 0 || av == NULL)
 		return (NULL);
-
-	for (i = 0; i < ac; i++)
+	for (arg = 0; arg < ac; arg++)
 	{
-		for (j = 0; av[i][j] != '\0'; j++)
-			size++;
-	}
-
-	size += (ac + 1);
-	s = malloc(sizeof(char) * size);
-	if (s == NULL)
-		return (NULL);
-	k = 0;
-	for (i = 0; i < ac; i++)
-	{
-		for (j = 0; av[i][j] != '\0'; j++)
+		for (byte = 0; av[arg][byte]; byte++)
 		{
-			s[k] = av[i][j];
-			k++;
+			len++;
 		}
-		s[k] = '\n';
-		k++;
+		len++;
 	}
-
-	s[k] = '\0';
-
-	return (s);
+	len++;
+	newstr = malloc(sizeof(char) * len);
+	if (newstr == NULL)
+		return (NULL);
+	for (arg = 0; arg < ac; arg++)
+	{
+		for (byte = 0; av[arg][byte]; byte++)
+		{
+			newstr[newind] = av[arg][byte];
+			newind++;
+		}
+		newstr[newind] = '\n';
+		newind++;
+	}
+	newstr[newind] = '\0';
+	return (newstr);
 }
